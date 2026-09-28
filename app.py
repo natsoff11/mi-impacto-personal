@@ -1,7 +1,8 @@
+
 import streamlit as st
+from src.load_data import cargar_datos
 st.title("Mi Impacto Personal")
-st.write("Bienvenido a tu primera aplicación.")
-st.write("Aquí registraremos tus habitos diarios.")
-nombre = st.text_input("Escribe tu nombre:")
-if nombre:
-    st.write(f"Hola, {nombre}! Que bueno verte.")
+st.write("Estos son tus habitos registrados:")
+df = cargar_datos("data/raw/habitos.csv")
+st.dataframe(df)
+st.line_chart(df.set_index("fecha"))
